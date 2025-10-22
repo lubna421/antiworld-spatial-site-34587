@@ -103,28 +103,8 @@ const ProductCarousel = () => {
                   : "flex-1"
               }`}
             >
-              <div className="relative aspect-[3/4] md:aspect-[2/3] overflow-visible rounded-2xl border-2 border-accent/30 group cursor-pointer">
-                {/* Product image */}
-                <div className="relative w-full h-full overflow-hidden rounded-2xl">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                </div>
-
-                {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent pointer-events-none" />
-
-                {/* Product name - always visible */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 pointer-events-none">
-                  <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
-                    {product.name}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">{product.description}</p>
-                </div>
-
-                {/* Detailed info - shown on hover */}
+              <div className="relative aspect-[3/4] md:aspect-[2/3] overflow-hidden rounded-2xl border-2 border-accent/30 group cursor-pointer">
+                {/* Detailed info - shown on hover (behind image) */}
                 <AnimatePresence>
                   {hoveredProduct === product.id && (
                     <motion.div
@@ -132,7 +112,7 @@ const ProductCarousel = () => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 20 }}
                       transition={{ duration: 0.3 }}
-                      className="absolute inset-0 bg-background/95 backdrop-blur-md p-8 flex flex-col justify-center rounded-2xl z-20"
+                      className="absolute inset-0 bg-background/95 backdrop-blur-md p-8 flex flex-col justify-center rounded-2xl z-10"
                     >
                       <div className="space-y-6">
                         <div>
@@ -170,6 +150,32 @@ const ProductCarousel = () => {
                     </motion.div>
                   )}
                 </AnimatePresence>
+
+                {/* Product image - appears above info on hover */}
+                <div className={`relative w-full h-full overflow-hidden rounded-2xl transition-all duration-700 ${
+                  hoveredProduct === product.id ? 'z-20 scale-110' : 'z-0'
+                }`}>
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                {/* Gradient overlay */}
+                <div className={`absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent pointer-events-none ${
+                  hoveredProduct === product.id ? 'opacity-0' : 'opacity-100'
+                } transition-opacity duration-300`} />
+
+                {/* Product name - always visible */}
+                <div className={`absolute bottom-0 left-0 right-0 p-6 pointer-events-none ${
+                  hoveredProduct === product.id ? 'opacity-0' : 'opacity-100'
+                } transition-opacity duration-300`}>
+                  <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
+                    {product.name}
+                  </h3>
+                  <p className="text-sm text-muted-foreground">{product.description}</p>
+                </div>
 
                 {/* Glow effect on hover */}
                 {hoveredProduct === product.id && (
