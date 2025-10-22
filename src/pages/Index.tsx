@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
+import ProductBanner from "@/components/ProductBanner";
 import ProductCarousel from "@/components/ProductCarousel";
 import VideoSection from "@/components/VideoSection";
 import Interactive3D from "@/components/Interactive3D";
@@ -13,6 +14,7 @@ const Index = () => {
       <Navigation />
       <main>
         <Hero />
+        <ProductBanner />
         <ProductCarousel />
         <VideoSection />
         <Interactive3D />
