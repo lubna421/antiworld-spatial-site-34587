@@ -8,45 +8,83 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* AntiWorld Spatial Computing Theme - Black/White/Olive/Aurora */
-    --background: 0 0% 0%; /* Pure black */
-    --foreground: 0 0% 100%; /* Pure white */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
 
-    --card: 0 0% 5%; /* Very dark gray for cards */
-    --card-foreground: 0 0% 100%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
 
-    --popover: 0 0% 5%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
 
-    --primary: 0 0% 100%; /* White primary */
-    --primary-foreground: 0 0% 0%;
+    --primary: 0 0% 10%;
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 76 25% 35%; /* Olive green */
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 10%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 76 25% 35%; /* Olive green accent */
-    --accent-foreground: 0 0% 100%;
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 10%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 76 25% 35%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 10%;
 
-    --radius: 1rem;
+    --radius: 0.5rem;
 
-    /* Aurora gradient colors */
-    --aurora-start: 76 25% 35%; /* Olive green */
-    --aurora-mid: 174 44% 41%; /* Teal */
-    --aurora-end: 180 55% 55%; /* Cyan */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 26%;
+    --sidebar-primary: 0 0% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-border: 0 0% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
 
-    /* Glow effects */
-    --glow-olive: 76 25% 35%;
-    --glow-aurora: 174 44% 41%;
+  .dark {
+    --background: 0 0% 10%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 10%;
+
+    --secondary: 0 0% 18%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 18%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 0 0% 18%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 0 0% 84%;
+    
+    --sidebar-background: 0 0% 10%;
+    --sidebar-foreground: 0 0% 96%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 16%;
+    --sidebar-accent-foreground: 0 0% 96%;
+    --sidebar-border: 0 0% 16%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
@@ -56,37 +94,42 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground overflow-x-hidden;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    @apply bg-background text-foreground font-sans;
   }
-
-  /* Aurora gradient background */
-  .aurora-bg {
-    background: linear-gradient(
-      135deg,
-      hsl(var(--aurora-start) / 0.1) 0%,
-      hsl(var(--aurora-mid) / 0.15) 50%,
-      hsl(var(--aurora-end) / 0.1) 100%
-    );
+  
+  h1 {
+    @apply text-5xl md:text-7xl font-bold tracking-tight;
   }
-
-  /* Glow effects */
-  .glow-olive {
-    box-shadow: 0 0 40px hsl(var(--glow-olive) / 0.4),
-                0 0 80px hsl(var(--glow-olive) / 0.2);
+  
+  h2 {
+    @apply text-4xl md:text-6xl font-bold tracking-tight;
   }
-
-  .glow-aurora {
-    box-shadow: 0 0 40px hsl(var(--glow-aurora) / 0.4),
-                0 0 80px hsl(var(--glow-aurora) / 0.2);
+  
+  h3 {
+    @apply text-3xl md:text-4xl font-semibold tracking-tight;
   }
-
-  /* 3D transform utilities */
-  .preserve-3d {
-    transform-style: preserve-3d;
+  
+  h4 {
+    @apply text-2xl md:text-3xl font-semibold tracking-tight;
   }
-
-  .perspective-1000 {
-    perspective: 1000px;
+  
+  h5 {
+    @apply text-xl md:text-2xl font-medium tracking-tight;
+  }
+  
+  h6 {
+    @apply text-lg md:text-xl font-medium tracking-tight;
+  }
+  
+  p {
+    @apply text-base md:text-lg leading-relaxed;
+  }
+  
+  .text-small {
+    @apply text-sm md:text-base;
+  }
+  
+  .text-caption {
+    @apply text-xs md:text-sm tracking-wide;
   }
 }
