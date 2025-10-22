@@ -103,19 +103,21 @@ const ProductCarousel = () => {
                   : "flex-1"
               }`}
             >
-              <div className="relative aspect-[3/4] md:aspect-[2/3] overflow-hidden rounded-2xl border-2 border-accent/30 group cursor-pointer">
+              <div className="relative aspect-[3/4] md:aspect-[2/3] overflow-visible rounded-2xl border-2 border-accent/30 group cursor-pointer">
                 {/* Product image */}
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
+                <div className="relative w-full h-full overflow-hidden rounded-2xl">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                </div>
 
                 {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent pointer-events-none" />
 
                 {/* Product name - always visible */}
-                <div className="absolute bottom-0 left-0 right-0 p-6">
+                <div className="absolute bottom-0 left-0 right-0 p-6 pointer-events-none">
                   <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
                     {product.name}
                   </h3>
@@ -130,7 +132,7 @@ const ProductCarousel = () => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 20 }}
                       transition={{ duration: 0.3 }}
-                      className="absolute inset-0 bg-background/95 backdrop-blur-md p-8 flex flex-col justify-center"
+                      className="absolute inset-0 bg-background/95 backdrop-blur-md p-8 flex flex-col justify-center rounded-2xl z-20"
                     >
                       <div className="space-y-6">
                         <div>
