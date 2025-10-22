@@ -104,34 +104,53 @@ const ProductCarousel = () => {
               }`}
             >
               <div className="relative aspect-[3/4] md:aspect-[2/3] overflow-hidden rounded-2xl border-2 border-accent/30 group cursor-pointer">
-                {/* Detailed info - shown on hover (behind image) */}
-                <AnimatePresence>
-                  {hoveredProduct === product.id && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 20 }}
-                      transition={{ duration: 0.3 }}
-                      className="absolute inset-0 bg-background/95 backdrop-blur-md p-8 flex flex-col justify-center rounded-2xl z-10"
-                    >
-                      <div className="space-y-6">
-                        <div>
-                          <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-                            {product.name}
-                          </h3>
-                          <p className="text-muted-foreground text-lg">
-                            {product.details}
-                          </p>
-                        </div>
+                {/* Product image - scales on hover */}
+                <div className={`relative w-full h-full overflow-hidden rounded-2xl transition-all duration-700 ${
+                  hoveredProduct === product.id ? 'scale-105' : 'scale-100'
+                }`}>
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
 
-                        <div className="space-y-3">
-                          <h4 className="text-accent font-semibold text-sm uppercase tracking-wider">
+                {/* Gradient overlay - more visible on hover */}
+                <div className={`absolute inset-0 bg-gradient-to-t transition-all duration-300 pointer-events-none ${
+                  hoveredProduct === product.id 
+                    ? 'from-background/95 via-background/60 to-transparent' 
+                    : 'from-background via-background/50 to-transparent'
+                }`} />
+
+                {/* Product info - always visible, more details on hover */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 z-20 pointer-events-auto">
+                  <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
+                    {product.name}
+                  </h3>
+                  <p className={`text-sm text-muted-foreground transition-all duration-300 ${
+                    hoveredProduct === product.id ? 'line-clamp-none mb-4' : 'line-clamp-2'
+                  }`}>
+                    {hoveredProduct === product.id ? product.details : product.description}
+                  </p>
+
+                  {/* Additional info - shown on hover */}
+                  <AnimatePresence>
+                    {hoveredProduct === product.id && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        transition={{ duration: 0.3 }}
+                        className="space-y-3"
+                      >
+                        <div className="space-y-2">
+                          <h4 className="text-accent font-semibold text-xs uppercase tracking-wider">
                             Key Features
                           </h4>
-                          <ul className="space-y-2">
-                            {product.specs.map((spec, i) => (
-                              <li key={i} className="flex items-start gap-2 text-muted-foreground">
-                                <span className="text-accent mt-1">•</span>
+                          <ul className="space-y-1.5">
+                            {product.specs.slice(0, 3).map((spec, i) => (
+                              <li key={i} className="flex items-start gap-2 text-muted-foreground text-sm">
+                                <span className="text-accent mt-0.5">•</span>
                                 <span>{spec}</span>
                               </li>
                             ))}
@@ -141,40 +160,15 @@ const ProductCarousel = () => {
                         <Link to={product.path}>
                           <Button
                             variant="outline"
-                            className="w-full border-accent text-accent hover:bg-accent hover:text-accent-foreground transition-all duration-300 glow-olive mt-4"
+                            size="sm"
+                            className="w-full border-accent text-accent hover:bg-accent hover:text-accent-foreground transition-all duration-300"
                           >
                             Learn More
                           </Button>
                         </Link>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-                {/* Product image - appears above info on hover */}
-                <div className={`relative w-full h-full overflow-hidden rounded-2xl transition-all duration-700 ${
-                  hoveredProduct === product.id ? 'z-20 scale-110' : 'z-0'
-                }`}>
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-
-                {/* Gradient overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent pointer-events-none ${
-                  hoveredProduct === product.id ? 'opacity-0' : 'opacity-100'
-                } transition-opacity duration-300`} />
-
-                {/* Product name - always visible */}
-                <div className={`absolute bottom-0 left-0 right-0 p-6 pointer-events-none ${
-                  hoveredProduct === product.id ? 'opacity-0' : 'opacity-100'
-                } transition-opacity duration-300`}>
-                  <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
-                    {product.name}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">{product.description}</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
 
                 {/* Glow effect on hover */}
