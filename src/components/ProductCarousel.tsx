@@ -99,14 +99,14 @@ const ProductCarousel = () => {
                 hoveredProduct === product.id
                   ? "md:flex-[2] flex-1"
                   : hoveredProduct !== null
-                  ? "md:flex-[0.5] flex-1 opacity-60"
+                  ? "md:flex-[0.5] flex-1 opacity-50"
                   : "flex-1"
               }`}
             >
               <div className="relative aspect-[3/4] md:aspect-[2/3] overflow-hidden rounded-2xl border-2 border-accent/30 group cursor-pointer">
                 {/* Product image - scales on hover */}
                 <div className={`relative w-full h-full overflow-hidden rounded-2xl transition-all duration-700 ${
-                  hoveredProduct === product.id ? 'scale-105' : 'scale-100'
+                  hoveredProduct === product.id ? 'scale-102 z-20' : 'scale-100'
                 }`}>
                   <img
                     src={product.image}
