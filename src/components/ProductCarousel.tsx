@@ -66,23 +66,51 @@ const ProductCarousel = () => {
       <div className="absolute inset-0 aurora-bg opacity-10 z-0" />
 
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 py-32">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20"
-        >
-          <h2 className="text-5xl md:text-6xl font-bold mb-6">
-            Our{" "}
-            <span className="bg-gradient-to-r from-accent via-foreground to-accent bg-clip-text text-transparent">
+        <div className="text-center mb-20 overflow-hidden">
+          <motion.h2 
+            className="text-5xl md:text-6xl font-bold mb-6 relative"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <motion.span
+              className="inline-block"
+              initial={{ clipPath: "inset(0 100% 0 0)" }}
+              whileInView={{ clipPath: "inset(0 0% 0 0)" }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeInOut" }}
+            >
+              Our{" "}
+            </motion.span>
+            <motion.span 
+              className="bg-gradient-to-r from-accent via-foreground to-accent bg-clip-text text-transparent inline-block"
+              initial={{ clipPath: "inset(0 0 0 100%)" }}
+              whileInView={{ clipPath: "inset(0 0 0 0%)" }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeInOut", delay: 0.2 }}
+            >
               Ecosystem
-            </span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            </motion.span>
+            {/* Vertical dividing line */}
+            <motion.div
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-0.5 h-full bg-accent"
+              initial={{ scaleY: 0 }}
+              whileInView={{ scaleY: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+            />
+          </motion.h2>
+          <motion.p 
+            className="text-xl text-muted-foreground max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
             Hover to explore each product
-          </p>
-        </motion.div>
+          </motion.p>
+        </div>
 
         {/* Cohesive product display */}
         <div className="flex flex-col md:flex-row items-center gap-4 md:gap-2 w-full max-w-7xl">
@@ -104,10 +132,8 @@ const ProductCarousel = () => {
               }`}
             >
               <div className="relative aspect-[3/4] md:aspect-[2/3] overflow-hidden rounded-2xl border-2 border-accent/30 group cursor-pointer">
-                {/* Product image - scales on hover */}
-                <div className={`relative w-full h-full overflow-hidden rounded-2xl transition-all duration-700 ${
-                  hoveredProduct === product.id ? 'scale-102 z-20' : 'scale-100'
-                }`}>
+                {/* Product image */}
+                <div className="relative w-full h-full overflow-hidden rounded-2xl">
                   <img
                     src={product.image}
                     alt={product.name}
