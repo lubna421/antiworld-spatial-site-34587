@@ -117,10 +117,10 @@ const ProductCarousel = () => {
           {products.map((product, index) => (
             <motion.div
               key={product.id}
-              initial={{ clipPath: "inset(0 100% 0 0)" }}
-              whileInView={{ clipPath: "inset(0 0% 0 0)" }}
+              initial={{ opacity: 0, x: -100 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: index * 0.2, ease: "easeInOut" }}
+              transition={{ duration: 0.6, delay: index * 0.2, ease: "easeOut" }}
               onHoverStart={() => setHoveredProduct(product.id)}
               onHoverEnd={() => setHoveredProduct(null)}
               className={`relative transition-all duration-500 ${
@@ -143,13 +143,13 @@ const ProductCarousel = () => {
                   />
                 )}
                 
-                {/* Product image with split-reveal */}
+                {/* Product image with sliding transition */}
                 <motion.div 
                   className="relative w-full h-full overflow-hidden rounded-2xl"
-                  initial={{ clipPath: "inset(0 50% 0 50%)" }}
-                  whileInView={{ clipPath: "inset(0 0% 0 0%)" }}
+                  initial={{ x: 100, opacity: 0 }}
+                  whileInView={{ x: 0, opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.2 + 0.3 }}
+                  transition={{ duration: 0.7, delay: index * 0.2 + 0.3, ease: "easeOut" }}
                 >
                   <img
                     src={product.image}
