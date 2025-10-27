@@ -117,10 +117,10 @@ const ProductCarousel = () => {
           {products.map((product, index) => (
             <motion.div
               key={product.id}
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ clipPath: "inset(0 100% 0 0)" }}
+              whileInView={{ clipPath: "inset(0 0% 0 0)" }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
+              transition={{ duration: 0.8, delay: index * 0.2, ease: "easeInOut" }}
               onHoverStart={() => setHoveredProduct(product.id)}
               onHoverEnd={() => setHoveredProduct(null)}
               className={`relative transition-all duration-500 ${
@@ -132,14 +132,31 @@ const ProductCarousel = () => {
               }`}
             >
               <div className="relative aspect-[3/4] md:aspect-[2/3] overflow-hidden rounded-2xl border-2 border-accent/30 group cursor-pointer">
-                {/* Product image */}
-                <div className="relative w-full h-full overflow-hidden rounded-2xl">
+                {/* Vertical dividing line that appears on hover */}
+                {hoveredProduct === product.id && (
+                  <motion.div
+                    initial={{ scaleY: 0 }}
+                    animate={{ scaleY: 1 }}
+                    exit={{ scaleY: 0 }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                    className="absolute top-0 left-1/2 -translate-x-1/2 w-0.5 h-full bg-accent/50 z-30"
+                  />
+                )}
+                
+                {/* Product image with split-reveal */}
+                <motion.div 
+                  className="relative w-full h-full overflow-hidden rounded-2xl"
+                  initial={{ clipPath: "inset(0 50% 0 50%)" }}
+                  whileInView={{ clipPath: "inset(0 0% 0 0%)" }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.2 + 0.3 }}
+                >
                   <img
                     src={product.image}
                     alt={product.name}
                     className="w-full h-full object-cover"
                   />
-                </div>
+                </motion.div>
 
                 {/* Gradient overlay - more visible on hover */}
                 <div className={`absolute inset-0 bg-gradient-to-t transition-all duration-300 pointer-events-none ${
