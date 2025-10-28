@@ -4,6 +4,9 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, ShoppingCart } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import LoginDialog from "@/components/LoginDialog";
+import { useAuth } from "@/hooks/useAuth";
+import { useToast } from "@/hooks/use-toast";
 import product1 from "@/assets/product-1.jpg";
 import product2 from "@/assets/product-2.jpg";
 import product3 from "@/assets/product-3.jpg";
@@ -77,6 +80,17 @@ const productData = {
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
   const product = id ? productData[id as keyof typeof productData] : null;
+  const { requireLogin, showLoginDialog, setShowLoginDialog, login } = useAuth();
+  const { toast } = useToast();
+
+  const handlePreorder = () => {
+    requireLogin(() => {
+      toast({
+        title: "Preorder Confirmed",
+        description: `Your preorder for ${product?.name} has been placed!`,
+      });
+    });
+  };
 
   if (!product) {
     return (
@@ -198,9 +212,10 @@ const ProductDetail = () => {
                 <Button
                   size="lg"
                   className="bg-accent hover:bg-accent/90 text-accent-foreground glow-olive"
+                  onClick={handlePreorder}
                 >
                   <ShoppingCart className="w-5 h-5 mr-2" />
-                  Add to Cart
+                  Preorder Now
                 </Button>
               </motion.div>
             </motion.div>
@@ -208,6 +223,11 @@ const ProductDetail = () => {
         </div>
       </main>
 
+      <LoginDialog 
+        open={showLoginDialog} 
+        onOpenChange={setShowLoginDialog}
+        onLogin={login}
+      />
       <Footer />
     </div>
   );
