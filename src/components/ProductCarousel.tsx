@@ -112,7 +112,7 @@ const ProductCarousel = () => {
           </motion.p>
         </div>
 
-        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-4 w-full max-w-7xl overflow-x-auto overflow-y-visible">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-4 w-full max-w-7xl mx-auto overflow-x-auto overflow-y-visible">
           {products.map((product, index) => (
             <motion.div
               key={product.id}
