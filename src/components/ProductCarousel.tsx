@@ -131,7 +131,7 @@ const ProductCarousel = () => {
                   : "flex-1"
               }`}
             >
-              <div className="relative aspect-[3/4] md:aspect-[2/3] overflow-hidden rounded-2xl border-2 border-accent/30 group cursor-pointer">
+              <div className="relative aspect-[3/4] md:aspect-[2/3] overflow-hidden rounded-2xl border-2 border-accent/30 group cursor-pointer transform-none">
                 {/* Vertical dividing line that appears on hover */}
                 {hoveredProduct === product.id && (
                   <motion.div
@@ -154,7 +154,7 @@ const ProductCarousel = () => {
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transform-none"
                   />
                 </motion.div>
 
