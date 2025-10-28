@@ -123,11 +123,11 @@ const ProductCarousel = () => {
               transition={{ duration: 0.6, delay: index * 0.2, ease: "easeOut" }}
               onHoverStart={() => setHoveredProduct(product.id)}
               onHoverEnd={() => setHoveredProduct(null)}
-              className={`relative transition-all duration-500 ${
+              className={`relative transition-all duration-700 ease-in-out ${
                 hoveredProduct === product.id
-                  ? "md:flex-[2] flex-1"
+                  ? "md:flex-[3] flex-1"
                   : hoveredProduct !== null
-                  ? "md:flex-[0.5] flex-1 opacity-50"
+                  ? "md:flex-[0.3] flex-1 opacity-60"
                   : "flex-1"
               }`}
             >
