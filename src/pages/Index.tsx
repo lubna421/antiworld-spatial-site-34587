@@ -7,10 +7,13 @@ import Interactive3D from "@/components/Interactive3D";
 import OSSection from "@/components/OSSection";
 import AboutUs from "@/components/AboutUs";
 import Footer from "@/components/Footer";
+import SplashScreen from "@/components/SplashScreen";
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <>
+      <SplashScreen />
+      <div className="min-h-screen">
       <Navigation />
       <main>
         <Hero />
@@ -23,6 +26,7 @@ const Index = () => {
       </main>
       <Footer />
     </div>
+    </>
   );
 };
 

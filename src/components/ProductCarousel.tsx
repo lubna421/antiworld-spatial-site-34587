@@ -130,16 +130,6 @@ const ProductCarousel = () => {
               }}
             >
               <div className="relative w-full h-full overflow-hidden rounded-2xl border-2 border-accent/30 group cursor-pointer transform-none">
-                {/* Vertical dividing line that appears on hover */}
-                {hoveredProduct === product.id && (
-                  <motion.div
-                    initial={{ scaleY: 0 }}
-                    animate={{ scaleY: 1 }}
-                    exit={{ scaleY: 0 }}
-                    transition={{ duration: 0.4, ease: "easeInOut" }}
-                    className="absolute top-0 left-1/2 -translate-x-1/2 w-0.5 h-full bg-accent/50 z-30"
-                  />
-                )}
                 
                 {/* Product image with sliding transition */}
                 <motion.div 
