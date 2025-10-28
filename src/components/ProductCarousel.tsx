@@ -112,7 +112,7 @@ const ProductCarousel = () => {
           </motion.p>
         </div>
 
-        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-4 w-full max-w-7xl overflow-visible">
+        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-4 w-full max-w-7xl overflow-x-auto overflow-y-visible">
           {products.map((product, index) => (
             <motion.div
               key={product.id}
@@ -122,14 +122,14 @@ const ProductCarousel = () => {
               transition={{ duration: 0.6, delay: index * 0.2, ease: "easeOut" }}
               onHoverStart={() => setHoveredProduct(product.id)}
               onHoverEnd={() => setHoveredProduct(null)}
-              className="relative flex-none transition-all duration-700 ease-in-out"
+              className="relative flex-none transition-all duration-700 ease-in-out h-[500px]"
               style={{
                 width: hoveredProduct === product.id 
-                  ? 'clamp(300px, 50vw, 600px)' 
-                  : 'clamp(200px, 20vw, 300px)'
+                  ? 'clamp(350px, 50vw, 700px)' 
+                  : 'clamp(200px, 18vw, 280px)'
               }}
             >
-              <div className="relative aspect-[3/4] md:aspect-[2/3] overflow-hidden rounded-2xl border-2 border-accent/30 group cursor-pointer transform-none">
+              <div className="relative w-full h-full overflow-hidden rounded-2xl border-2 border-accent/30 group cursor-pointer transform-none">
                 {/* Vertical dividing line that appears on hover */}
                 {hoveredProduct === product.id && (
                   <motion.div
