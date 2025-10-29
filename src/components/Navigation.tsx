@@ -30,9 +30,14 @@ const Navigation = () => {
     }
   });
 
-  const navItems = [
+  const leftNavItems = [
     { name: "Home", path: "/" },
     { name: "Technology", path: "/#technology" },
+  ];
+
+  const rightNavItems = [
+    { name: "Use Cases", path: "/#use-cases" },
+    { name: "Company", path: "/#company" },
   ];
 
   return (
@@ -43,44 +48,39 @@ const Navigation = () => {
       }}
       animate={hidden ? "hidden" : "visible"}
       transition={{ duration: 0.35, ease: "easeInOut" }}
-      className="fixed top-0 left-0 right-0 z-50"
+      className="fixed top-0 left-0 right-0 z-50 bg-background"
     >
-      <div className="container mx-auto px-6 py-8">
+      <div className="container mx-auto px-6 py-6">
         <div className="flex items-center justify-between">
-          <Link to="/" className="text-2xl font-bold tracking-tight">
-            <span className="bg-gradient-to-r from-foreground via-accent to-foreground bg-clip-text text-transparent">
-              AntiWorld
-            </span>
-          </Link>
-
+          {/* Left Navigation */}
           <NavigationMenu>
             <NavigationMenuList className="gap-8">
-              {navItems.map((item) => (
+              {leftNavItems.map((item) => (
                 <NavigationMenuItem key={item.name}>
                   <NavigationMenuLink asChild>
                     <a
                       href={item.path}
-                      className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors relative group"
+                      className="text-sm font-medium text-foreground hover:text-foreground transition-colors relative group"
                     >
                       {item.name}
-                      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full" />
+                      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-foreground transition-all duration-300 group-hover:w-full" />
                     </a>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
               ))}
               
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-sm font-medium text-muted-foreground hover:text-foreground bg-transparent hover:bg-transparent data-[state=open]:bg-transparent">
+                <NavigationMenuTrigger className="text-sm font-medium text-foreground hover:text-foreground bg-transparent hover:bg-transparent data-[state=open]:bg-transparent">
                   Products
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ul className="grid w-48 gap-3 p-4 bg-background/95 backdrop-blur-xl border border-border rounded-lg">
+                  <ul className="grid w-48 gap-3 p-4 bg-background border border-border rounded-lg shadow-lg">
                     {products.map((product) => (
                       <li key={product.name}>
                         <NavigationMenuLink asChild>
                           <Link
                             to={product.path}
-                            className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent/50 hover:text-foreground focus:bg-accent/50 focus:text-foreground text-sm font-medium text-muted-foreground"
+                            className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-foreground focus:bg-accent focus:text-foreground text-sm font-medium text-foreground"
                           >
                             {product.name}
                           </Link>
@@ -90,6 +90,30 @@ const Navigation = () => {
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+
+          {/* Centered Brand */}
+          <Link to="/" className="absolute left-1/2 transform -translate-x-1/2 text-2xl font-bold tracking-tight">
+            <span className="text-foreground">AntiWorld</span>
+          </Link>
+
+          {/* Right Navigation */}
+          <NavigationMenu>
+            <NavigationMenuList className="gap-8">
+              {rightNavItems.map((item) => (
+                <NavigationMenuItem key={item.name}>
+                  <NavigationMenuLink asChild>
+                    <a
+                      href={item.path}
+                      className="text-sm font-medium text-foreground hover:text-foreground transition-colors relative group"
+                    >
+                      {item.name}
+                      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-foreground transition-all duration-300 group-hover:w-full" />
+                    </a>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              ))}
             </NavigationMenuList>
           </NavigationMenu>
         </div>
