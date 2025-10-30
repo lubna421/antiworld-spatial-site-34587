@@ -74,21 +74,26 @@ const Navigation = () => {
                 <NavigationMenuTrigger className="text-sm font-medium text-foreground hover:text-foreground bg-transparent hover:bg-transparent data-[state=open]:bg-transparent">
                   Products
                 </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-48 gap-3 p-4 bg-background border border-border rounded-lg shadow-lg">
-                    {products.map((product) => (
-                      <li key={product.name}>
-                        <NavigationMenuLink asChild>
-                          <Link
-                            to={product.path}
-                            className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-foreground focus:bg-accent focus:text-foreground text-sm font-medium text-foreground"
-                          >
-                            {product.name}
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
-                    ))}
-                  </ul>
+                <NavigationMenuContent className="left-0 top-0 w-screen">
+                  <div className="container mx-auto px-6 py-8">
+                    <ul className="grid grid-cols-3 gap-6">
+                      {products.map((product) => (
+                        <li key={product.name}>
+                          <NavigationMenuLink asChild>
+                            <Link
+                              to={product.path}
+                              className="block select-none rounded-md p-6 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-foreground focus:bg-accent focus:text-foreground"
+                            >
+                              <div className="text-lg font-semibold mb-2">{product.name}</div>
+                              <p className="text-sm text-muted-foreground">
+                                Discover the future of spatial computing
+                              </p>
+                            </Link>
+                          </NavigationMenuLink>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
             </NavigationMenuList>
