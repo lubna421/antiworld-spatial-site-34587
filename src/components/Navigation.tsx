@@ -51,11 +51,11 @@ const Navigation = () => {
       transition={{ duration: 0.35, ease: "easeInOut" }}
       className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border"
     >
-      <NavigationMenu className="w-full max-w-none">
-        <div className="container mx-auto px-6 py-6">
-          <div className="flex items-center justify-between">
+      <div className="container mx-auto px-6 py-6 relative">
+        <NavigationMenu className="w-full max-w-none">
+          <div className="flex items-center justify-between w-full">
             {/* Left Navigation */}
-            <NavigationMenuList className="gap-8">
+            <NavigationMenuList className="gap-8 flex-none">
               {leftNavItems.map((item) => (
                 <NavigationMenuItem key={item.name}>
                   <NavigationMenuLink asChild>
@@ -74,37 +74,41 @@ const Navigation = () => {
                 <NavigationMenuTrigger className="text-sm font-medium text-foreground hover:text-foreground bg-transparent hover:bg-transparent data-[state=open]:bg-transparent">
                   Products
                 </NavigationMenuTrigger>
-                <NavigationMenuContent className="absolute left-0 w-screen -ml-6">
-                  <div className="container mx-auto px-6 py-8">
-                    <ul className="grid grid-cols-3 gap-6">
-                      {products.map((product) => (
-                        <li key={product.name}>
-                          <NavigationMenuLink asChild>
-                            <Link
-                              to={product.path}
-                              className="block select-none rounded-md p-6 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-foreground focus:bg-accent focus:text-foreground"
-                            >
-                              <div className="text-lg font-semibold mb-2">{product.name}</div>
-                              <p className="text-sm text-muted-foreground">
-                                Discover the future of spatial computing
-                              </p>
-                            </Link>
-                          </NavigationMenuLink>
-                        </li>
-                      ))}
-                    </ul>
+                <NavigationMenuContent className="absolute left-0 w-screen data-[motion=from-start]:animate-in data-[motion=from-end]:animate-in data-[motion=to-start]:animate-out data-[motion=to-end]:animate-out data-[motion=from-start]:fade-in data-[motion=from-end]:fade-in data-[motion=to-start]:fade-out data-[motion=to-end]:fade-out">
+                  <div className="w-screen bg-background border-t border-border py-8">
+                    <div className="container mx-auto px-6">
+                      <ul className="grid grid-cols-3 gap-6">
+                        {products.map((product) => (
+                          <li key={product.name}>
+                            <NavigationMenuLink asChild>
+                              <Link
+                                to={product.path}
+                                className="block select-none rounded-md p-6 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-foreground focus:bg-accent focus:text-foreground"
+                              >
+                                <div className="text-lg font-semibold mb-2">{product.name}</div>
+                                <p className="text-sm text-muted-foreground">
+                                  Discover the future of spatial computing
+                                </p>
+                              </Link>
+                            </NavigationMenuLink>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
             </NavigationMenuList>
 
             {/* Centered Brand */}
-            <Link to="/" className="absolute left-1/2 transform -translate-x-1/2 text-2xl font-bold tracking-tight">
-              <span className="text-foreground">AntiWorld</span>
-            </Link>
+            <div className="flex-1 flex justify-center">
+              <Link to="/" className="text-2xl font-bold tracking-tight">
+                <span className="text-foreground">AntiWorld</span>
+              </Link>
+            </div>
 
             {/* Right Navigation */}
-            <NavigationMenuList className="gap-8">
+            <NavigationMenuList className="gap-8 flex-none">
               {rightNavItems.map((item) => (
                 <NavigationMenuItem key={item.name}>
                   <NavigationMenuLink asChild>
@@ -120,8 +124,8 @@ const Navigation = () => {
               ))}
             </NavigationMenuList>
           </div>
-        </div>
-      </NavigationMenu>
+        </NavigationMenu>
+      </div>
     </motion.nav>
   );
 };
