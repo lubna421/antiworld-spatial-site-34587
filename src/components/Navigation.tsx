@@ -49,12 +49,12 @@ const Navigation = () => {
       }}
       animate={hidden ? "hidden" : "visible"}
       transition={{ duration: 0.35, ease: "easeInOut" }}
-      className="fixed top-0 left-0 right-0 z-50 bg-background"
+      className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border"
     >
-      <div className="container mx-auto px-6 py-6">
-        <div className="flex items-center justify-between">
-          {/* Left Navigation */}
-          <NavigationMenu>
+      <NavigationMenu className="w-full max-w-none">
+        <div className="container mx-auto px-6 py-6">
+          <div className="flex items-center justify-between">
+            {/* Left Navigation */}
             <NavigationMenuList className="gap-8">
               {leftNavItems.map((item) => (
                 <NavigationMenuItem key={item.name}>
@@ -74,7 +74,7 @@ const Navigation = () => {
                 <NavigationMenuTrigger className="text-sm font-medium text-foreground hover:text-foreground bg-transparent hover:bg-transparent data-[state=open]:bg-transparent">
                   Products
                 </NavigationMenuTrigger>
-                <NavigationMenuContent className="left-0 top-0 w-screen">
+                <NavigationMenuContent className="absolute left-0 w-screen -ml-6">
                   <div className="container mx-auto px-6 py-8">
                     <ul className="grid grid-cols-3 gap-6">
                       {products.map((product) => (
@@ -97,15 +97,13 @@ const Navigation = () => {
                 </NavigationMenuContent>
               </NavigationMenuItem>
             </NavigationMenuList>
-          </NavigationMenu>
 
-          {/* Centered Brand */}
-          <Link to="/" className="absolute left-1/2 transform -translate-x-1/2 text-2xl font-bold tracking-tight">
-            <span className="text-foreground">AntiWorld</span>
-          </Link>
+            {/* Centered Brand */}
+            <Link to="/" className="absolute left-1/2 transform -translate-x-1/2 text-2xl font-bold tracking-tight">
+              <span className="text-foreground">AntiWorld</span>
+            </Link>
 
-          {/* Right Navigation */}
-          <NavigationMenu>
+            {/* Right Navigation */}
             <NavigationMenuList className="gap-8">
               {rightNavItems.map((item) => (
                 <NavigationMenuItem key={item.name}>
@@ -121,9 +119,9 @@ const Navigation = () => {
                 </NavigationMenuItem>
               ))}
             </NavigationMenuList>
-          </NavigationMenu>
+          </div>
         </div>
-      </div>
+      </NavigationMenu>
     </motion.nav>
   );
 };
