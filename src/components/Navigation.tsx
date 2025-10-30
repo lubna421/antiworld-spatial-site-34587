@@ -74,8 +74,8 @@ const Navigation = () => {
                 <NavigationMenuTrigger className="text-sm font-medium text-foreground hover:text-foreground bg-transparent hover:bg-transparent data-[state=open]:bg-transparent">
                   Products
                 </NavigationMenuTrigger>
-                <NavigationMenuContent className="absolute left-0 w-screen data-[motion=from-start]:animate-in data-[motion=from-end]:animate-in data-[motion=to-start]:animate-out data-[motion=to-end]:animate-out data-[motion=from-start]:fade-in data-[motion=from-end]:fade-in data-[motion=to-start]:fade-out data-[motion=to-end]:fade-out">
-                  <div className="w-screen bg-background border-t border-border py-8">
+                <NavigationMenuContent className="absolute left-0 right-0 w-full data-[motion=from-start]:animate-in data-[motion=from-end]:animate-in data-[motion=to-start]:animate-out data-[motion=to-end]:animate-out data-[motion=from-start]:fade-in data-[motion=from-end]:fade-in data-[motion=to-start]:fade-out data-[motion=to-end]:fade-out">
+                  <div className="w-full bg-background border-t border-border py-8">
                     <div className="container mx-auto px-6">
                       <ul className="grid grid-cols-3 gap-6">
                         {products.map((product) => (
