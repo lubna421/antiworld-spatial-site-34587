@@ -125,7 +125,7 @@ const ProductCarousel = () => {
               className="relative flex-none transition-all duration-700 ease-in-out h-[500px]"
               style={{
                 width: hoveredProduct === product.id 
-                  ? 'clamp(350px, 50vw, 700px)' 
+                  ? 'clamp(300px, 35vw, 450px)' 
                   : 'clamp(200px, 18vw, 280px)'
               }}
             >
