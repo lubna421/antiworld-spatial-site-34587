@@ -38,6 +38,7 @@ const Navigation = () => {
   const rightNavItems = [
     { name: "Use Cases", path: "/#use-cases" },
     { name: "Company", path: "/#company" },
+    { name: "Talk to Sales", path: "/contact-sales" },
   ];
 
   return (

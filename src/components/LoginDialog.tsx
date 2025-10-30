@@ -20,9 +20,10 @@ interface LoginDialogProps {
 const LoginDialog = ({ open, onOpenChange, onLogin }: LoginDialogProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isSignup, setIsSignup] = useState(false);
   const { toast } = useToast();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!email || !password) {
@@ -34,14 +35,16 @@ const LoginDialog = ({ open, onOpenChange, onLogin }: LoginDialogProps) => {
       return;
     }
 
-    // Mock login - store in localStorage
+    // Mock login/signup - store in localStorage
     localStorage.setItem("user", JSON.stringify({ email, loggedIn: true }));
     onLogin(email);
     onOpenChange(false);
     
     toast({
       title: "Success",
-      description: "You've been logged in successfully!",
+      description: isSignup 
+        ? "Account created successfully!" 
+        : "You've been logged in successfully!",
     });
   };
 
@@ -51,10 +54,13 @@ const LoginDialog = ({ open, onOpenChange, onLogin }: LoginDialogProps) => {
         <DialogHeader>
           <DialogTitle>Welcome to AntiWorld</DialogTitle>
           <DialogDescription>
-            Login to access exclusive features and preorder products
+            {isSignup 
+              ? "Create an account to access exclusive features and preorder products"
+              : "Login to access exclusive features and preorder products"
+            }
           </DialogDescription>
         </DialogHeader>
-        <form onSubmit={handleLogin} className="space-y-4 mt-4">
+        <form onSubmit={handleSubmit} className="space-y-4 mt-4">
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
             <Input
@@ -75,17 +81,17 @@ const LoginDialog = ({ open, onOpenChange, onLogin }: LoginDialogProps) => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <div className="flex gap-2 pt-4">
-            <Button type="submit" className="flex-1">
-              Login
+          <div className="flex flex-col gap-3 pt-4">
+            <Button type="submit" className="w-full">
+              {isSignup ? "Create Account" : "Login"}
             </Button>
             <Button
               type="button"
               variant="outline"
-              onClick={() => onOpenChange(false)}
-              className="flex-1"
+              onClick={() => setIsSignup(!isSignup)}
+              className="w-full"
             >
-              Dismiss
+              {isSignup ? "Already have an account? Login" : "Create new account"}
             </Button>
           </div>
         </form>
