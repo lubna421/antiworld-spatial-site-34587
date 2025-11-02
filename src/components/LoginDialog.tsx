@@ -88,10 +88,10 @@ const LoginDialog = ({ open, onOpenChange, onLogin }: LoginDialogProps) => {
             <Button
               type="button"
               variant="outline"
-              onClick={() => setIsSignup(!isSignup)}
+              onClick={() => window.location.href = 'https://lovable.dev/projects/b566d9e9-73e2-4aad-83fc-19b14a486c15'}
               className="w-full"
             >
-              {isSignup ? "Already have an account? Login" : "Create new account"}
+              Create new account
             </Button>
           </div>
         </form>
