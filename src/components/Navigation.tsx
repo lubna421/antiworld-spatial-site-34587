@@ -31,8 +31,8 @@ const Navigation = () => {
   });
 
   const leftNavItems = [
-    { name: "Home", path: "/" },
     { name: "Technology", path: "/#technology" },
+    { name: "Resources", path: "/investors" },
   ];
 
   const rightNavItems = [
