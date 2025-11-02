@@ -55,20 +55,18 @@ const OSSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, delay: index * 0.1 }}
-              whileHover={{ scale: 1.02, rotateX: 2 }}
-              className="group perspective-1000"
             >
-              <div className="p-8 rounded-2xl border border-border bg-card/30 backdrop-blur-sm hover:border-accent transition-all duration-500 preserve-3d hover:shadow-2xl">
+              <div className="p-8 rounded-2xl border border-border bg-card/30 backdrop-blur-sm transition-all duration-500">
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 + 0.2 }}
                 >
-                  <h3 className="text-2xl font-bold mb-4 group-hover:text-accent transition-colors">
+                  <h3 className="text-2xl font-bold mb-4 text-black">
                     {feature.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-[#4A4A4A] leading-relaxed">
                     {feature.description}
                   </p>
                 </motion.div>

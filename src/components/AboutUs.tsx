@@ -14,11 +14,11 @@ const AboutUs = () => {
           transition={{ duration: 0.8 }}
           className="text-center space-y-8"
         >
-          <h2 className="text-5xl md:text-6xl font-bold text-foreground">
-            About <span className="text-[#708238]">AntiWorld</span>
+          <h2 className="text-5xl md:text-6xl font-bold text-black">
+            About <span className="text-black">AntiWorld</span>
           </h2>
           
-          <div className="space-y-6 text-lg md:text-xl text-muted-foreground leading-relaxed">
+          <div className="space-y-6 text-lg md:text-xl text-[#4A4A4A] leading-relaxed">
             <p>
               We are pioneering the future of spatial computing, creating immersive experiences 
               that seamlessly blend the physical and digital worlds.
@@ -43,8 +43,8 @@ const AboutUs = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="pt-8"
           >
-            <div className="inline-block px-8 py-4 rounded-lg bg-card/50 backdrop-blur-sm border border-[#708238]/20">
-              <p className="text-[#708238] font-semibold text-xl">
+            <div className="inline-block px-8 py-4 rounded-lg bg-card/50 backdrop-blur-sm border border-border">
+              <p className="text-black font-semibold text-xl">
                 Building tomorrow's reality, today.
               </p>
             </div>
